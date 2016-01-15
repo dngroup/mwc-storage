@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<content>
+  <contentsID>2</contentsID>
+  <actorID>anonymous</actorID>
+  <unix_time>1435512411</unix_time>
+  <link>/videos/anonymous/7a139f4d-fff1-4ad9-9f79-7f530b9bbdf9</link>
+  <status>0</status>
+  <type>VIDEO</type>
+  <resolution name="medium" uri="http://172.17.0.4:8082/api/storage/2/medium"/>
+  <resolution name="high" uri="http://172.17.0.4:8082/api/storage/2/high"/>
+  <resolution name="low" uri="http://172.17.0.4:8082/api/storage/2/low"/>
+</content>
