@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Content {
 
 	String uri;
-
+	String returnUri;
 	String id;
 	Date created;
 	Boolean cached;
@@ -43,6 +43,14 @@ public class Content {
 
 	public void setUri(String uri) {
 		this.uri = uri;
+	}
+
+	public String getReturnUri() {
+		return returnUri;
+	}
+
+	public void setReturnUri(String returnUri) {
+		this.returnUri = returnUri;
 	}
 
 	public String getId() {

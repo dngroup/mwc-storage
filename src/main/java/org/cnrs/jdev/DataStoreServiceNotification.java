@@ -1,5 +1,6 @@
 package org.cnrs.jdev;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -58,14 +59,21 @@ public class DataStoreServiceNotification implements DataStoreService {
 
 	@Override
 	public void put(String contentid, InputStream is) throws IOException {
-		// TODO Auto-generated method stub
+		target.put(contentid, is);
 		
 	}
 
 	@Override
 	public void get(String contentid, OutputStream os) throws IOException {
-		// TODO Auto-generated method stub
+		target.get(contentid, os);
 		
 	}
+
+	@Override
+	public Response stream(String contentid, String resolution, String range) throws FileNotFoundException, IOException {
+		return target.stream(contentid, resolution,range);
+	}
+
+
 
 }

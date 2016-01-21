@@ -1,8 +1,11 @@
 package org.cnrs.jdev;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+
+import javax.ws.rs.core.Response;
 
 public interface DataStoreService {
 
@@ -17,5 +20,8 @@ public interface DataStoreService {
 
 	public void get(String contentid, OutputStream os)
 			throws IOException;
+
+	public Response stream(String contentid, String resolution, String range) throws FileNotFoundException, IOException;
+	
 
 }

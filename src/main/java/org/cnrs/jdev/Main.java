@@ -9,8 +9,11 @@ import java.net.URI;
 import java.util.Date;
 import java.util.Properties;
 
+import org.glassfish.grizzly.http.server.HttpHandler;
 import org.glassfish.grizzly.http.server.HttpServer;
+import org.glassfish.grizzly.http.server.StaticHttpHandler;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
 import static org.quartz.JobBuilder.newJob;
@@ -26,6 +29,7 @@ import org.quartz.impl.StdSchedulerFactory;
 import com.lexicalscope.jewel.cli.CliFactory;
 import com.lexicalscope.jewel.cli.HelpRequestedException;
 import com.lexicalscope.jewel.cli.Option;
+
 
 /**
  * Main class.
@@ -46,8 +50,8 @@ public class Main {
 		// providers
 		// in org.cnrs.jdev package
 		final ResourceConfig rc = new ResourceConfig()
-				.packages("org.cnrs.jdev").register(CORSResponseFilter.class);
-
+				.packages("org.cnrs.jdev").register(CORSResponseFilter.class).register(MultiPartFeature.class);
+		
 		// create and start a new instance of grizzly http server
 		// exposing the Jersey application at BASE_URI
 		return GrizzlyHttpServerFactory.createHttpServer(
@@ -74,6 +78,9 @@ public class Main {
 			CliConfSingleton.vanillaPort = cliconf.getVanillaPort();
 
 			final HttpServer server = startServer();
+
+			HttpHandler videos = new StaticHttpHandler("/var/www/dummy");
+			server.getServerConfiguration().addHttpHandler(videos,"/video");
 //TODO: uncomment this line
 //			setupCron();
 

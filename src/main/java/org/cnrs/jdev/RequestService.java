@@ -14,4 +14,6 @@ public interface RequestService {
 
 	abstract void pushTranscodeMessage(String string, URI uri) throws IOException;
 
+	abstract String getMetadata(String ID) throws IOException;
+
 }
