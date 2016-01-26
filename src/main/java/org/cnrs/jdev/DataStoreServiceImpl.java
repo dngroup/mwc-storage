@@ -50,7 +50,7 @@ public class DataStoreServiceImpl implements DataStoreService {
 
 	}
 	
-	final int chunk_size = 1024 * 1024*20; // 1MB chunks
+	final int chunk_size = Integer.MAX_VALUE/2; // 1MB chunks
 	
 	@Override
 	public Response stream(String contentid, String resolution, String range) throws IOException {
@@ -81,10 +81,10 @@ public class DataStoreServiceImpl implements DataStoreService {
 		    /**
 		     * Chunk media if the range upper bound is unspecified. Chrome sends "bytes=0-"
 		     */
-		    int to = chunk_size + from;
-		    if (to >= asset.length()) {
-		        to = (int) (asset.length() - 1);
-		    }
+//		    int to = chunk_size + from;
+//		    if (to >= asset.length()) {
+		    int   to = (int) (asset.length() - 1);
+//		    }
 		    if (ranges.length == 2) {
 		        to = Integer.parseInt(ranges[1]);
 		    }

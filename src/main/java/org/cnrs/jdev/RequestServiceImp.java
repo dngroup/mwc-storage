@@ -40,8 +40,11 @@ public class RequestServiceImp implements RequestService {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
-		URI frontendURI = UriBuilder.fromUri("http://frontend")
+		String frontendHostname= System.getenv().get("FRONTEND_HOSTNAME");
+		if (frontendHostname==null){
+			frontendHostname="frontend";
+		}
+		URI frontendURI = UriBuilder.fromUri("http://"+frontendHostname)
 				.port(CliConfSingleton.vanillaPort).path("api").path("content")
 				.build();
 		WebTarget target = client.target(frontendURI);
@@ -72,7 +75,11 @@ public class RequestServiceImp implements RequestService {
 
 	@Override
 	public String getMetadata(String ID) throws IOException {
-		URI frontendURI = UriBuilder.fromUri("http://frontend")
+		String frontendHostname= System.getenv().get("FRONTEND_HOSTNAME");
+		if (frontendHostname==null){
+			frontendHostname="frontend";
+		}
+		URI frontendURI = UriBuilder.fromUri("http://"+frontendHostname)
 				.port(CliConfSingleton.vanillaPort).path("api").path("content")
 				.path(ID).build();
 		WebTarget target = client.target(frontendURI);
