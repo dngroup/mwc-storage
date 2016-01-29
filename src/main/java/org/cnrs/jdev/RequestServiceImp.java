@@ -1,6 +1,7 @@
 package org.cnrs.jdev;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringWriter;
 import java.net.URI;
 
@@ -96,5 +97,23 @@ public class RequestServiceImp implements RequestService {
 					"Can not connect to the remote host", 502);
 		}
 	}
+	
+	@Override
+	public InputStream getContent(URI uri) throws IOException {
 
+	
+		WebTarget target = client.target(uri);
+		
+		Response response = null;
+		try {
+			response = target.request().get();
+			return response.readEntity(InputStream.class);
+
+		} catch (ProcessingException e) {
+			LOGGER.error("Can not connect to the remote host {} ", uri,
+					e);
+			throw new WebApplicationException(
+					"Can not connect to the remote host", 502);
+		}
+	}
 }
